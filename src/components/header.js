@@ -1,42 +1,23 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
+import React, { useState } from "react"
+import NavBar from "react-responsive-menubar/lib/NavBar"
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
-)
+const Header = () => {
+  const [showNavBar, setShowNavbar] = useState(false)
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
+  return (
+    <header className="header" style={{ position: "relative" }}>
+      <NavBar
+        handleSideNavToggle={() => setShowNavbar(!showNavBar)}
+        showSideNav={showNavBar}
+        logoStyles={{ display: "none" }}
+        navBarStyles={{ boxShadow: "none", backgroundColor: "white" }}
+        linkStyles={{ color: "smoke", fontWeight: "bold" }}
+      >
+        <a href="/">home</a>
+        <a href="/">contact</a>
+      </NavBar>
+    </header>
+  )
 }
 
 export default Header
